@@ -19,6 +19,10 @@ public class GamePanel extends JPanel implements Runnable {
     this.setBackground(Color.BLACK); // sets background to black
     this.setLayout(null);
 
+    // IMPLEMENTS KeyListener
+    this.addKeyListener(new KeyHandler());
+    this.setFocusable(true); // gets the key inputs when the window is focused
+
     pm = new PlayManager();
   }
 
@@ -29,6 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
 
   @Override
   public void run() {
+
+    System.out.println("running ");
 
     // GAME LOOP
     double drawInterval = 1000000000 / FPS; // nanoseconds (1 second in reality) divided by our desired frame per second

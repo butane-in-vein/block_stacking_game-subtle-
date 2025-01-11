@@ -1,5 +1,9 @@
 package main;
 
+import mino.Block;
+import mino.Mino;
+import mino.Mino_L1;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +17,17 @@ public class PlayManager {
   public static int right_x;
   public static int top_y;
   public static int bottom_y;
+
+  // FONT
   Font maruMonica;
+
+  // Mino
+  Mino currentMino;
+  final int MINO_START_X;
+  final int MINO_START_Y;
+
+  // OTHERS
+  public static int dropInterval = 60; // interval to drop in every 60 frames (or 1 seconds)
 
   public PlayManager() {
 
@@ -32,10 +46,18 @@ public class PlayManager {
       throw new RuntimeException(e);
     }
 
+    MINO_START_X = left_x + (WIDTH / 2) - Block.SIZE;
+    MINO_START_Y = top_y + Block.SIZE;
+
+    // SET THE STARTING MINO
+    currentMino = new Mino_L1();
+    currentMino.setXY(MINO_START_X, MINO_START_Y);
+
   }
 
   public void update() {
 
+    currentMino.update();
   }
 
   public void draw(Graphics2D g2) {
@@ -57,6 +79,11 @@ public class PlayManager {
     g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     g2.drawString("NEXT", x + 60, y + 40); // DRAWS "NEXT" INSIDE THE BOX
 
+
+    // DRAW currentMino
+    if (currentMino != null) { // checks if its not null, else we risk nullpointerexceptions
+      currentMino.draw(g2);
+    }
 
   }
 }

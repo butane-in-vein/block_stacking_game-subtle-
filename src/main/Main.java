@@ -16,6 +16,7 @@ public class Main {
     window.setLocationRelativeTo(null); // set to null
     window.setVisible(true); // shows the actual window
 
+    gp.launchGame();
 
   }
 }
