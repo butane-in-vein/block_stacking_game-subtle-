@@ -1,12 +1,11 @@
 package main;
 
-import mino.Block;
-import mino.Mino;
-import mino.Mino_L1;
+import mino.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 public class PlayManager {
 
@@ -50,11 +49,28 @@ public class PlayManager {
     MINO_START_Y = top_y + Block.SIZE;
 
     // SET THE STARTING MINO
-    currentMino = new Mino_L1();
+    currentMino = pickMino();
     currentMino.setXY(MINO_START_X, MINO_START_Y);
 
   }
 
+  private Mino pickMino() {
+
+    // Pick a random mino
+    Mino mino = null;
+    int i = new Random().nextInt(7);
+
+    switch(i) {
+      case 0: mino = new Mino_L1(); break;
+      case 1: mino = new Mino_L2(); break;
+      case 2: mino = new Mino_Square(); break;
+      case 3: mino = new Mino_Bar(); break;
+      case 4: mino = new Mino_T(); break;
+      case 5: mino = new Mino_Z1(); break;
+      case 6: mino = new Mino_Z2(); break;
+    }
+    return mino;
+  }
   public void update() {
 
     currentMino.update();

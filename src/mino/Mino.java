@@ -9,7 +9,7 @@ public class Mino {
 
   public Block b[] = new Block[4];
   public Block tempB[] = new Block[4];
-public int direction = 1; // there are 4 direction (1/2/3/4)
+  public int direction = 1; // there are 4 direction (1/2/3/4)
 
   // COUNTER
   int autoDropCounter = 0;
@@ -26,7 +26,9 @@ public int direction = 1; // there are 4 direction (1/2/3/4)
     tempB[3] = new Block(c);
   }
 
-  public void setXY(int x, int y) {}
+  public void setXY(int x, int y) {
+  }
+
   public void updateXY(int direction) {
 
     this.direction = direction;
@@ -39,16 +41,23 @@ public int direction = 1; // there are 4 direction (1/2/3/4)
     b[3].x = tempB[3].x;
     b[3].y = tempB[3].y;
   }
-  public getDirection1() {}
-  public getDirection2() {}
-  public getDirection3() {}
-  public getDirection4() {}
+  public void getDirection1() {}
+  public void getDirection2() {}
+  public void getDirection3() {}
+  public void getDirection4() {}
 
   public void update() {
 
     // CONTROL THE MINO
     if (KeyHandler.upPressed) {
+      switch (direction) {
+        case 1: getDirection2();break;
+        case 2: getDirection3(); break;
+        case 3: getDirection4(); break;
+        case 4: getDirection1(); break;
 
+      }
+      KeyHandler.upPressed = false;
     }
     if (KeyHandler.downPressed) {
       b[0].y += Block.SIZE;
